@@ -25,6 +25,11 @@ describe('String Calculator', () => {
     expect(add("1\n2,3")).toBe(6); // New lines and commas mixed
     expect(add("1\n2\n3")).toBe(6); // Only new lines
   });
+
+  test('should support different delimiters', () => {
+    expect(add("//;\n1;2")).toBe(3); // Semicolon delimiter
+    expect(add("//|\n1|2|3")).toBe(6); // Pipe delimiter
+  });
   
 });
 
