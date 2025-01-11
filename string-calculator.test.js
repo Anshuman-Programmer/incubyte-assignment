@@ -20,6 +20,11 @@ describe('String Calculator', () => {
   test('should return 0 for invalid input', () => {
     expect(add("a,b,c")).toBe(0);
   });
+
+  test('should handle new lines as delimiters', () => {
+    expect(add("1\n2,3")).toBe(6); // New lines and commas mixed
+    expect(add("1\n2\n3")).toBe(6); // Only new lines
+  });
   
 });
 
