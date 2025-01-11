@@ -3,16 +3,20 @@ function add(numbers) {
   
     let delimiter = ",";
     if (numbers.startsWith("//")) {
-      // Extract delimiter from the format "//[delimiter]\n"
       const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
       if (delimiterMatch) {
-        delimiter = delimiterMatch[1]; // Custom delimiter
-        numbers = numbers.slice(delimiterMatch[0].length); // Remove delimiter declaration
+        delimiter = delimiterMatch[1];
+        numbers = numbers.slice(delimiterMatch[0].length);
       }
     }
   
-    // Replace new lines with the delimiter, then split
     const nums = numbers.replace(/\n/g, delimiter).split(delimiter).map(num => parseInt(num, 10)).filter(num => !isNaN(num));
+  
+    // Check for negatives
+    const negatives = nums.filter(num => num < 0);
+    if (negatives.length > 0) {
+      throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
+    }
   
     return nums.reduce((sum, num) => sum + num, 0);
   }

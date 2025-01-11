@@ -30,6 +30,14 @@ describe('String Calculator', () => {
     expect(add("//;\n1;2")).toBe(3); // Semicolon delimiter
     expect(add("//|\n1|2|3")).toBe(6); // Pipe delimiter
   });
+
+  test('should throw an exception for negative numbers', () => {
+    expect(() => add("1,-2,3")).toThrow("negative numbers not allowed: -2");
+  });
+  
+  test('should list all negative numbers in the exception', () => {
+    expect(() => add("-1,-2,3")).toThrow("negative numbers not allowed: -1,-2");
+  });
   
 });
 
