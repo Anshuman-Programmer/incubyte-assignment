@@ -38,6 +38,11 @@ describe('String Calculator', () => {
   test('should list all negative numbers in the exception', () => {
     expect(() => add("-1,-2,3")).toThrow("negative numbers not allowed: -1,-2");
   });
+
+    test("should multiply if has *", () => {
+      expect(add("//*\n5*2")).toBe(10); // Semicolon delimiter
+      expect(add("//*\n2*2*3")).toBe(12); // Pipe delimiter
+    });
   
 });
 

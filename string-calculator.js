@@ -1,5 +1,14 @@
 const doesNumberHasCustomDemiliters = (numbers) => numbers.startsWith("//");
 
+const calculateResult = (result, num, delimiter) => {
+  if (delimiter === "*") return result * num;
+  return result + num;
+};
+
+const getIntialDefaultValue = (delimiter) => {
+  return delimiter === "*" ? 1 : 0;
+};
+
 function add(numbers) {
   if (numbers === "") return 0;
 
@@ -23,7 +32,10 @@ function add(numbers) {
     throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
   }
 
-  return nums.reduce((sum, num) => sum + num, 0);
+  return nums.reduce(
+    (result, num) => calculateResult(result, num, delimiter),
+    getIntialDefaultValue(delimiter)
+  );
 }
 
 module.exports = { add };
