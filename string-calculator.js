@@ -1,15 +1,14 @@
 const doesNumberHasCustomDemiliters = (numbers) => numbers.startsWith("//");
 
-const calculateResult = (result, num, delimiter) => {
-  if (delimiter === "*") return result * num;
-  return result + num;
+const sum = (numbers) => {
+  return numbers.reduce((result, num) => num + result, 0);
 };
 
-const getIntialDefaultValue = (delimiter) => {
-  return delimiter === "*" ? 1 : 0;
+const multiplication = (numbers) => {
+  return numbers.reduce((result, num) => num * result, 1);
 };
 
-function add(numbers) {
+function calculate(numbers) {
   if (numbers === "") return 0;
 
   let delimiter = ",";
@@ -32,10 +31,8 @@ function add(numbers) {
     throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
   }
 
-  return nums.reduce(
-    (result, num) => calculateResult(result, num, delimiter),
-    getIntialDefaultValue(delimiter)
-  );
+  if (delimiter === "*") return multiplication(nums);
+  return sum(nums);
 }
 
-module.exports = { add };
+module.exports = { calculate };
