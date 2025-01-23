@@ -1,8 +1,10 @@
+const doesNumberHasCustomDemiliters = (numbers) => numbers.startsWith("//");
+
 function add(numbers) {
   if (numbers === "") return 0;
 
   let delimiter = ",";
-  if (numbers.startsWith("//")) {
+  if (doesNumberHasCustomDemiliters(numbers)) {
     const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
     if (delimiterMatch) {
       delimiter = delimiterMatch[1];
